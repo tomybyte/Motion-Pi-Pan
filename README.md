@@ -36,7 +36,7 @@ This programm is highly inspired by face-track ver 0.63 written by Claude Pageau
 pageauc@gmail.com
 https://github.com/pageauc/face-track-demo/
 
-## ----------------------------------------------------------------------------
+##
 
 Have Fun
 
