@@ -1,0 +1,101 @@
+/*! default extra styles no changes */
+.remotecontrol {
+    width: 160px;
+    margin: 10px auto 10px auto;
+}
+#arrowUp, #arrowDown, #arrowLeft, #arrowRight, #arrowUpLeft, #arrowUpRight, #arrowDownLeft, #arrowDownRight, #arrowCenter {
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    float: left;
+}
+#arrowLeft, #arrowRight {
+    margin: 20px 0 20px 0;
+}
+#arrowUp, #arrowDown {
+    margin: 0 20px 0 20px;
+}
+#arrowCenter {
+    margin: 20px;
+}
+#arrowCenter {
+    width: 40px;
+    height: 40px;
+    background: #428bca;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+#arrowUp {
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #428bca;
+}
+#arrowLeft {
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 40px solid #428bca;
+}
+#arrowRight {
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #428bca;
+}
+#arrowDown {
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 40px solid #428bca;
+}
+#arrowUpLeft {
+    border-top: 40px solid #428bca;
+    border-right: 40px solid transparent;
+}
+#arrowUpRight {
+    border-top: 40px solid #428bca;
+    border-left: 40px solid transparent;
+}
+#arrowDownLeft {
+    border-bottom: 40px solid #428bca;
+    border-right: 40px solid transparent;
+}
+#arrowDownRight {
+    border-bottom: 40px solid #428bca;
+    border-left: 40px solid transparent;
+}
+#mjpeg_dest {
+    width: 100%;
+    height: auto;
+    max-width: 680px;
+}
+.container-fluid {
+    padding: 0;
+}
+.navbar-brand {
+    white-space: nowrap;
+}
+body {
+    padding-top: 30px;
+}
+.navbar-brand {
+    padding: 2px 10px 0px 10px;
+    height: auto;
+    font-size: 13px;
+}
+.navbar {
+    min-height: initial;
+    margin-bottom: 10px;
+}
+#toggle_display {
+    top: 30px!important;
+    right: 10px!important;
+}
+.btn {
+    margin: 10px 0 0 0;
+}
+.panel-body {
+    padding: 0;
+    width: 100%;
+    overflow-x: scroll;
+}
