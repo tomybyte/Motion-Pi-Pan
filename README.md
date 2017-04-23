@@ -5,7 +5,7 @@
 ### Install
 
     cd ~
-    git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
+    git clone https://github.com/tomybyte/Motion-Pi-Pan.git
     cd Motion-Pi-Pan
     chmod u+x *.sh
     sudo ./Motion-Pi-Pan-install.sh
