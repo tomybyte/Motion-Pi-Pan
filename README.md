@@ -32,9 +32,8 @@ You can run Motion-Pi-Pan.py with command line debug:
 
 ### Credits
 
-This programm is highly inspired by face-track ver 0.63 written by Claude Pageau
-pageauc@gmail.com
-https://github.com/pageauc/face-track-demo/
+This programm is highly inspired by face-track ver 0.63 
+written by Claude Pageau https://github.com/pageauc/face-track-demo/
 
 ##
 
