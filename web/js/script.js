@@ -446,15 +446,15 @@ ajax_status.onreadystatechange = function() {
     }
 }
 
-var motion_status = "motion tracking start";
+var motion_status = "motion start";
 
 function toggle_motion_status(cmd) {
     if (!getID("motion_button")) {
         return;
     }
     var run = "",
-        stop = "motion tracking stop",
-        start = "motion tracking start",
+        stop = "motion stop",
+        start = "motion start",
         ajax_motion = window.XMLHttpRequest ? new XMLHttpRequest() : ActiveXObject("Microsoft.XMLHTTP");
     ajax_motion.onreadystatechange = function() {
         if (ajax_motion.readyState == 4 && ajax_motion.status == 200) {
