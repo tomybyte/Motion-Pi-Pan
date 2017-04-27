@@ -1,6 +1,6 @@
-## Raspberry Pi 2 - RPi-Cam-Web-Interface - Sensor / Servo Motion Tracking Extension
+## Raspberry Pi 2 - RPi-Cam-Web-Interface - Sensor / Servo Motion Tracking Plugin
 
-***Uses sensors & python & Opencv to Track x,y position of moving object in camera view***
+***Uses sensors & python & Opencv to Track x,y position of moving faces or objects in camera view***
 
 ### Install
 
