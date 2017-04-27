@@ -57,6 +57,11 @@ min_area = 250
 threshold_sensitivity = 25
 blur_size = 10
 
+# OpenCV haarcascade Settings
+fface1_haar_path = '/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml'  # default face frontal detection
+fface2_haar_path = '/usr/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml'  # frontal face pattern detection
+pface1_haar_path = '/usr/share/opencv/haarcascades/haarcascade_profileface.xml'	# side face pattern detection
+
 #-----------------------------------------------------------------------------------------------
 
 # import the necessary python libraries
@@ -144,6 +149,11 @@ cam_cy = camera_height / 2
 blue = (255,0,0)
 green = (0,255,0)
 red = (0,0,255)
+
+# Setup haar_cascade variables
+face_cascade = cv2.CascadeClassifier(fface1_haar_path)
+frontalface = cv2.CascadeClassifier(fface2_haar_path)
+profileface = cv2.CascadeClassifier(pface1_haar_path)
 
 #-----------------------------------------------------------------------------------------------
 def fifo_listener(): # listen to RPi-Cam-Web-Interface FIFO
@@ -292,6 +302,39 @@ def motion_detect(gray_img_1, gray_img_2):
                 print("%s motion_detect(): found motion at px cx,cy (%i, %i) Area w%i x h%i = %i sq px" % (datetime.datetime.now(), int(x + w/2), int(y + h/2), w, h, biggest_area))
     return motion_center
 
+#-----------------------------------------------------------------------------------------------
+def face_detect(image):
+    face = ()
+    # Look for Frontal Face
+    ffaces = face_cascade.detectMultiScale(image, scaleFactor=1.3, minNeighbors=5, minSize=(60, 60), flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
+    if ffaces != ():
+        for f in ffaces:
+            face = f
+        source = 'face cascade'
+    else:
+        # Look for Profile Face if Frontal Face Not Found
+        pfaces = profileface.detectMultiScale(image, scaleFactor=1.3, minNeighbors=5, minSize=(60, 60), flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
+        if pfaces != ():  # Check if Profile Face Found
+            for f in pfaces:  # f in pface is an array with a rectangle representing a face
+                face = f
+            source = 'profile face'
+        else:
+            ffaces = frontalface.detectMultiScale(image, scaleFactor=1.3, minNeighbors=5, minSize=(60, 60), flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
+            if ffaces != ():  # Check if Frontal Face Found
+                for f in ffaces:  # f in fface is an array with a rectangle representing a face
+                    face = f
+                source = 'fronta face'
+    if face != ():
+        (x, y, w, h) = face
+        cx = int(x + w/2)
+        cy = int(y + h/2)
+        # wirte image
+        cv2.rectangle(img_frame, (x, y), (x + w, y + h), red, line_thickness)
+        cv2.imwrite(camera_target, img_frame)
+        if debug:
+            print("%s face_detect(): found face by: %s at px cx,cy (%i, %i) Area w%i x h%i" % (datetime.datetime.now(), source, int(x + w/2), int(y + h/2), w, h))
+    return face
+
 #-----------------------------------------------------------------------------------------------  
 def motion_track():
     global motion_temp, motion_inactive, img_frame
@@ -300,6 +343,7 @@ def motion_track():
 
     motion_inactive = 0
     motion_center = ()
+    face_center = ()
     # init sensors
     for i in GPIO_PIRS:
         GPIO.setup(i,GPIO.IN)
@@ -311,8 +355,6 @@ def motion_track():
     # img_frame = cv2.flip(img_frame, 1) # vertical
     # wirte image
     cv2.imwrite(camera_target, img_frame)
-    pan_cx = pos_x
-    pan_cy = pos_y
     grayimage1 = cv2.cvtColor(img_frame, cv2.COLOR_BGR2GRAY)
     # start listen to RPi-Cam-Web-Interface FIFO
     fl = Thread(target=fifo_listener)
@@ -326,26 +368,35 @@ def motion_track():
             img_frame = cv2.imread(camera_source)
             # Search for Motion and Track
             grayimage2 = cv2.cvtColor(img_frame, cv2.COLOR_BGR2GRAY)
-            if motion_center == ():
+            if motion_center == () and face_center == ():
                 motion_center = motion_detect(grayimage1, grayimage2)
-                #print ("%s - Motion detection" % datetime.datetime.now())
+                face_center = face_detect(grayimage2)
             else:
                 # after moving reset grayimage2 first
                 motion_center = ()
+                face_center = ()
             motion_inactive += 1
             grayimage1 = grayimage2  # Reset grayimage1 for next loop
-            if motion_center != ():
+            if face_center != () or motion_center != ():
                 motion_inactive = 0
-                cx = motion_center[0]
-                cy = motion_center[1]
-                Nav_LR = int((cam_cx - cx) / 7)
-                Nav_UD = int((cam_cy - cy) / 6)
-                # use + instead - otherwise use cv2.flip image vertical
-                pan_cx = pos_x + Nav_LR 
-                pan_cy = pos_y - Nav_UD
-                if debug:
-                    print("%s motion_track(): motion at cx=%3i cy=%3i | pan to pan_cx=%3i pan_cy=%3i | Nav_LR=%3i Nav_UD=%3i " % (datetime.datetime.now(), cx, cy, pan_cx, pan_cy, Nav_LR, Nav_UD))
-                motion_move(pan_cx, pan_cy)
+                if servo_active == False:
+                    if face_center != ():
+                        (fx, fy, fw, fh) = face_center
+                        cx = int(fx + fw/2)
+                        cy = int(fy + fh/2)
+                        source = 'face'
+                    else:
+                        cx = motion_center[0]
+                        cy = motion_center[1]
+                        source = 'motion'
+                    Nav_LR = int((cam_cx - cx) / 7)
+                    Nav_UD = int((cam_cy - cy) / 6)
+                    # use + instead - otherwise use cv2.flip image vertical
+                    pan_cx = pos_x + Nav_LR 
+                    pan_cy = pos_y - Nav_UD
+                    if debug:
+                        print("%s motion_track(): %s at cx=%3i cy=%3i | pan to pan_cx=%3i pan_cy=%3i | Nav_LR=%3i Nav_UD=%3i " % (datetime.datetime.now(), source, cx, cy, pan_cx, pan_cy, Nav_LR, Nav_UD))
+                    motion_move(pan_cx, pan_cy)
 
 #-----------------------------------------------------------------------------------------------
 try:
