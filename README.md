@@ -28,6 +28,8 @@ You can run Motion-Pi-Pan.py with command line debug:
 * Camera Module e.g.: http://amzn.to/2oizp6k
 * 3 HC-SR501 Sensors e.g: http://amzn.to/2oiw0Va
 * Pan/Tilt Camera Mount with 2 SG-90 Servos e.g.: http://amzn.to/2pTY8hr
+* Jumper Wire 20cm Female-Female e.g.: http://amzn.to/2pvtIBk
+* Camera Flex 30cm Cable e.g.: http://amzn.to/2oVW7gV
 * installed RPi-Cam-Web-Interface https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 
 ### Credits
