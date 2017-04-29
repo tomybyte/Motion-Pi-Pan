@@ -40,3 +40,32 @@ written by Claude Pageau https://github.com/pageauc/face-track-demo/
 Have Fun
 
 ![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/wall-e.jpg)
+
+
+### Adjustments
+
+#### HC-SR501
+
+Left / Right Sensor half sensity and minimum delay
+Middle Sensor minimum sensity and minimum delay
+
+Sensor GPIO ports
+
+    middle = 22
+    left = 17
+    right = 27
+
+![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/HC-SR501_potis.jpg)
+
+#### SG-90 Servos
+
+GPIO ports
+
+    X / pan = 23
+    Y / tilt = 24
+
+![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/SG90_Servo.jpg)
+
+#### Raspberry Pi 2 GPIO ports
+
+![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/raspberry-gpio-pin-belegung.jpg)
