@@ -32,18 +32,6 @@ You can run Motion-Pi-Pan.py with command line debug:
 * Camera Flex 30cm Cable e.g.: http://amzn.to/2oVW7gV
 * installed RPi-Cam-Web-Interface https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 
-### Credits
-
-This programm is highly inspired by face-track ver 0.63 
-written by Claude Pageau https://github.com/pageauc/face-track-demo/
-
-##
-
-Have Fun
-
-![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/wall-e.jpg)
-
-
 ### Adjustments
 
 #### Raspberry Pi 2 GPIO ports
@@ -71,3 +59,14 @@ GPIO ports
     Y / tilt = 24
 
 ![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/SG90_Servo.jpg)
+
+### Credits
+
+This programm is highly inspired by face-track ver 0.63 
+written by Claude Pageau https://github.com/pageauc/face-track-demo/
+
+##
+
+Have Fun
+
+![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/wall-e.jpg)
