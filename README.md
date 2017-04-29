@@ -40,8 +40,8 @@ You can run Motion-Pi-Pan.py with command line debug:
 
 #### HC-SR501
 
-    Left / Right Sensor = half sensity and min delay
-    Middle Sensor = min sensity and min delay
+    Left / Right Sensor = half sensitivity and min delay
+    Middle Sensor = min sensitivity and min delay
 
 Sensor GPIO ports
 
