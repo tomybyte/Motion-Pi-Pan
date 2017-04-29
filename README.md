@@ -44,6 +44,10 @@ Have Fun
 
 ### Adjustments
 
+#### Raspberry Pi 2 GPIO ports
+
+![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/raspberry-gpio-pin-belegung.jpg)
+
 #### HC-SR501
 
 Left / Right Sensor half sensity and minimum delay
@@ -65,7 +69,3 @@ GPIO ports
     Y / tilt = 24
 
 ![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/SG90_Servo.jpg)
-
-#### Raspberry Pi 2 GPIO ports
-
-![ScreenShot](https://github.com/tomybyte/Motion-Pi-Pan/blob/master/img/raspberry-gpio-pin-belegung.jpg)
