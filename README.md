@@ -50,8 +50,8 @@ Have Fun
 
 #### HC-SR501
 
-Left / Right Sensor half sensity and minimum delay
-Middle Sensor minimum sensity and minimum delay
+    Left / Right Sensor half sensity and minimum delay
+    Middle Sensor minimum sensity and minimum delay
 
 Sensor GPIO ports
 
